@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>FC</title>
+    <link rel= "shortcut icon" href= "https://cdn.dribbble.com/users/1411568/screenshots/10952352/dribbble_4x.png">
+    <link rel="stylesheet" href="static/style.css">
+</head>
+<body>
+    <h1>FriendConnect</h1>
+    <h2>Добро Пожадовать, {{ username }}!</h2>
+    <div id="messages">
+        {% for username, message in messages %}
+    <p><strong>{{ username }}:</strong> {{ message }}</p>{% endfor %}
+
+    </div>
+    <form action="/send_message" method="post">
+        <input type="hidden" name="username" value="{{ username }}">
+        <label for="message">Message:</label>
+        <input type="text" name="message" id="message" required>
+        <button type="submit">Send</button>
+        <button type="button" onclick="addEmoji('😀')">😀</button>
+        <button type="button" onclick="addEmoji('😂')">😂</button>
+        <button type="button" onclick="addEmoji('😊')">😊</button>
+        <button type="button" onclick="addEmoji('😍')">😍</button>
+    </form>
+    <script>
+        function addEmoji(emoji) {
+            const messageInput = document.getElementById('message');
+            messageInput.value += emoji;
+            
+        }
+    </script>
+</body>
+</html>
